@@ -20,7 +20,7 @@ sudo systemctl enable bluetooth.service
 ```
 lsmod | grep btusb
 ```
-   *if not is chargend, charge manuall** ***sudo modprobe btusb***
+   -*if not is charged, charge manuall ***sudo modprobe btusb***
 ---
 ## How use
 
@@ -50,7 +50,7 @@ For enter more speed, i create a alias in ***~/.zshrc*** or ***~/.bashrc***
 ```
 nvim ~/.zshrc
 ```
-   *search the lines that init on ***alias***
+   -*search the lines that init on ***alias***
 
 - Write:
 ```
