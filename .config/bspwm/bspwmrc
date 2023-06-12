@@ -1,0 +1,34 @@
+#! /bin/sh
+
+#Picom
+pkill picom
+picom -f --daemon --config "${HOME}/.config/picom/picom.conf" &
+
+#Skhkd
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+#Launch Dunst
+pkill dunst
+dunst -conf ~/.config/dunst/dunstrc &
+
+#Polybar
+$HOME/.config/polybar/launch.sh &
+# polybar &
+
+#Script for battery
+$HOME/.config/verifyBattery.sh &
+
+bspc monitor -d I II III IV V VI VII VIII IX X
+bspc config top_padding 26
+bspc config border_width         2
+bspc config window_gap		 8
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+#Tools-----------
+flameshot &
+
+#Wallpaper-------
+feh --bg-scale /home/juarch/Pictures/wallhaven-zx12wj_1920x1080.png &
