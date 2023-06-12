@@ -20,7 +20,7 @@ sudo systemctl enable bluetooth.service
 ```
 lsmod | grep btusb
 ```
-*if not is charged, charge manuall with:* ***sudo modprobe btusb***
+    if not is charged, charge manuall with: ***sudo modprobe btusb***
 ---
 ## How use
 
