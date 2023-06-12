@@ -30,11 +30,11 @@ sudo cp grub grup.backup
 ```
 
 And now change some properties in */etc/default/grub*
-- 1. Open the file grub in your terminal:
+1. Open the file grub in your terminal:
 ```
 sudo nvim /etc/default/grub 
 ```
-- 2. Search the line:
+2. Search the line:
 ```
 GRUB_GFXMODE=auto
 ```
