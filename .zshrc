@@ -62,11 +62,12 @@ alias lla='lsd -lha --group-dirs=first'
 alias ls='lsd --group-dirs=first'
 alias cat='bat'
 alias image='kitty +kitten icat'
-alias nvimSxhdk='nvim ~/.config/sxhkd/sxhkdrc'
-alias nvimBspwm='nvim ~/.config/bspwm/bspwmrc'
-alias nvimXinit='nvim ~/.xinitrc'
-alias nvimDunst='nvim ~/.config/dunst/dunstrc'
-alias nvimZsh='nvim ~/.zshrc'
+alias vSxhdk='nvim ~/.dotifles/.config/sxhkd/sxhkdrc'
+alias vBspwm='nvim ~/.dotfiles/.config/bspwm/bspwmrc'
+alias vXinit='nvim ~/.dotfiles/.xinitrc'
+alias vDunst='nvim ~/.dotfiles/.config/dunst/dunstrc'
+alias vZsh='nvim ~/.dotfiles/.zshrc'
+alias bl='bluetoothctl'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
