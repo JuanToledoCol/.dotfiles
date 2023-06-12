@@ -7,3 +7,4 @@
 - [3. Polybar](./guides/Polybar.md)
 - [4. Dunst](./guides/Dunst.md)
 - [5. Kitty](./guides/Kitty.md)
+- [6. Bluetooth](./guides/Bluetooth.md)
