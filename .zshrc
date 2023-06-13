@@ -1,4 +1,8 @@
-#Start bspwm
+# PATHS 
+export PATH=$PATH:$HOME/.config/rofi/scripts
+export ZSH=$HOME/.oh-my-zsh
+
+# Start bspwm
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
   exec startx
 fi
@@ -50,16 +54,11 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
-# Manual configuration
-
-
-
 # Manual aliases
 alias ll='lsd -lh --group-dirs=first'
 alias la='lsd -a --group-dirs=first'
 alias l='lsd --group-dirs=first'
 alias lla='lsd -lha --group-dirs=first'
-alias ls='lsd --group-dirs=first'
 alias cat='bat'
 alias image='kitty +kitten icat'
 alias vSxhdk='nvim ~/.dotifles/.config/sxhkd/sxhkdrc'
@@ -139,17 +138,13 @@ function rmk(){
 (( ! ${+functions[p10k-instant-prompt-finalize]} )) || p10k-instant-prompt-finalize
 source ~/tools/powerlevel10k/powerlevel10k.zsh-theme
 
-# Figlet
-figlet "JuArch"
-
-# PATHS 
-export PATH=$PATH:$HOME/.config/rofi/scripts
-export ZSH=$HOME/.oh-my-zsh
-
 #Sources 
 source $ZSH/oh-my-zsh.sh
 source ~/.bashrc
 source ~/.bash_profile
+
+# Figlet
+figlet "JuArch"
 
 # Mapping of Supr And ESC
 bindkey "^[[H" beginning-of-line
