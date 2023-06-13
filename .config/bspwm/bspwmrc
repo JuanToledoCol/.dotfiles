@@ -29,6 +29,9 @@ $HOME/.config/polybar/launch.sh &
 #Script for battery
 $HOME/.config/verifyBattery.sh &
 
+#Wifi
+nm-applet &
+
 bspc monitor -d I II III IV V VI VII VIII IX X
 bspc config top_padding 26
 bspc config border_width         2
