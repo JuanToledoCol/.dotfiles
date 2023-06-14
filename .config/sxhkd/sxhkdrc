@@ -12,7 +12,7 @@ super + @space
 
 # powermenu launcher
 super + F1 
-	${HOME}/.config/rofi/scripts/powermenu_t4
+	${HOME}/.dotfiles/.config/rofi/scripts/powermenu_t4
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -138,6 +138,10 @@ ctrl + p
 #Intellij
 ctrl + j
 	/home/juarch/idea-IU-231.9011.34/bin/idea.sh &
+
+#DBeaver
+ctrl + b
+	dbeaver &
 
 #launcher spotify
 ctrl + s
