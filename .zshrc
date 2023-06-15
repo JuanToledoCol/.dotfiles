@@ -1,6 +1,9 @@
 # PATHS 
 export PATH=$PATH:$HOME/.config/rofi/scripts
 export ZSH=$HOME/.oh-my-zsh
+export JAVA_HOME=/usr/bin/java
+export PATH="$PATH:$HOME/.npm-global/bin"
+export GIT_EDITOR="npx --no-install cz"
 
 # Start bspwm
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
