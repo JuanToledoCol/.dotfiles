@@ -44,6 +44,5 @@ xsetroot -cursor_name left_ptr -xcf /usr/share/icons/Bibata-Modern-Classic/curso
 
 #Tools-----------
 flameshot &
-
 #Wallpaper-------
 feh --bg-scale /home/juarch/Pictures/wallhaven-zx12wj_1920x1080.png &
