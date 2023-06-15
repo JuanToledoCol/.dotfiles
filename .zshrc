@@ -69,7 +69,7 @@ alias ndunst='nvim ~/.dotfiles/.config/dunst/dunstrc'
 alias nzsh='nvim ~/.dotfiles/.zshrc'
 alias nkitty='nvim ~/.dotfiles/.config/kitty/kitty.conf'
 alias bl='bluetoothctl'
-alias gci='czg ai -N5'
+alias gci='czg ai -N=5'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
