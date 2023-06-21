@@ -68,8 +68,11 @@ alias nxinit='nvim ~/.dotfiles/.xinitrc'
 alias ndunst='nvim ~/.dotfiles/.config/dunst/dunstrc'
 alias nzsh='nvim ~/.dotfiles/.zshrc'
 alias nkitty='nvim ~/.dotfiles/.config/kitty/kitty.conf'
+alias nastro='nvim ~/.dotfiles/.config/nvim/lua/user/'
 alias bl='bluetoothctl'
 alias gci='czg ai -N=5'
+alias widget='nvim ~/Novatec/repos/yoint-widget/'
+alias puppe='nvim ~/Novatec/repos/ms-scotiabank/'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

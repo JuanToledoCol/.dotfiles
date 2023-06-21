@@ -1,0 +1,4 @@
+-xembed '*' -name 'VLC media player'
+-xtime 1 -locker 'i3lock && feh -bg-scale ~/Pictures/lock.png'
+
+

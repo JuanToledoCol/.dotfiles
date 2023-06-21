@@ -42,6 +42,9 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 xsetroot -cursor_name left_ptr -xcf /usr/share/icons/Bibata-Modern-Classic/cursors/left_ptr
 
+# Keyboard
+setxkbmap latam &
+
 #Tools-----------
 flameshot &
 #Wallpaper-------

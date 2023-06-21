@@ -19,7 +19,7 @@ super + Escape
 	pkill -USR1 -x sxhkd
 
 # Lock PC
-super + l
+alt + l
 	i3lock -B 10 -k --wrong-text="500" --lock-text="Hack me" --noinput-text="Is Empty" --inside-color=595f74 --ring-color=001315 --keyhl-color=3a3d4c --bshl-color=c35d71 --insidever-color=00aabf --ringver-color=00bdbf --insidewrong-color=a62829 --ringwrong-color=641819
 
 #
@@ -132,31 +132,31 @@ super + {Left,Down,Up,Right}
 #**************************************************
 
 #Appĺet Network
-super + n
+super +  n
 	nm-applet &
 
 #Postman
-ctrl + p
+ctrl + alt + p
 	/opt/Postman/Postman &
 
 #Intellij
-ctrl + j
+ctrl + alt + j
 	/home/juarch/idea-IU-231.9011.34/bin/idea.sh &
 
 #DBeaver
-ctrl + b
+ctrl + alt + b
 	dbeaver &
 
 #launcher spotify
-ctrl + s
+ctrl + alt + s
 	spotify-launcher
 
 # Edge
-ctrl + i
+ctrl + alt + i
 	microsoft-edge-stable
 
 # Edge Private
-ctrl + alt + i
+ctrl + shift + alt + i
 	microsoft-edge-stable --inprivate
 
 # Flamshot
