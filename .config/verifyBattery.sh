@@ -1,23 +1,52 @@
 #!/bin/bash
 
+# Comprueba si el adaptador de corriente está conectado
+check_power_status() {
+  acpi -a | grep -q "on-line"
+  return $?
+}
+
+# Comprueba el nivel actual de la batería
+check_battery_level() {
+  acpi -b | grep -Po '[0-9]+(?=%)'
+}
+
+# Notificación utilizando dunst
+send_notification() {
+  local message=$1
+  dunstify -u normal "Gestión de batería" "$message"
+}
+
+# Suspender el sistema
+suspend_system() {
+  send_notification "¡La batería ha alcanzado el nivel crítico! El sistema se suspenderá en 10 segundos."
+  sleep 10
+  systemctl suspend
+}
+
+# Verifica el nivel de la batería y toma las acciones necesarias
+check_battery() {
+  local battery_level=$(check_battery_level)
+  
+  if [ $battery_level -le 5 ]; then
+    suspend_system
+  elif [ $battery_level -le 10 ]; then
+    send_notification "Nivel de batería bajo: $battery_level%. Conéctate al cargador."
+  elif [ $battery_level -le 20 ]; then
+    send_notification "Nivel de batería moderado: $battery_level%. Conéctate al cargador."
+  fi
+}
+
+# Verifica si el adaptador de corriente está conectado
+if check_power_status; then
+  send_notification "El cargador está conectado."
+else
+  send_notification "El cargador no está conectado."
+fi
+
+# Comprueba la batería cada 60 segundos
 while true; do
-    battery_status=$(acpi -b | awk '{print $3}' | tr -d ',' | sed 's/,//g')
-    battery_level=$(acpi -b | awk '{print $4}' | tr -d '%' | sed 's/,//g')
-    if [ "$battery_status" == "Charging" ]; then
-        if [ "$battery_level" == 100 ]; then
-            dunstify "Battery charging complete" "Disconnected the charger." -u normal
-        fi
-    elif [ "$battery_status" == "Discharging" ]; then
-        if [ "$battery_level" -le 20 ]; then
-            dunstify "Baterry low $battery_level%" "Connect the charger." -u critical
-        elif [ "$battery_level" -le 10 ]; then
-            dunstify "Baterry very low $battery_level%" "Connect the charger now." -u critical
-        elif [ "$battery_level" -le 5 ]; then
-            dunstify "Battery very low $battery_level%" "The pc entry in mode 'Suspend'" -u critical
-            sleep 30
-            systemctl suspend
-        fi
-    fi
-    sleep 10
+  check_battery
+  sleep 60
 done
 
