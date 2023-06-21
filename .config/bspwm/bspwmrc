@@ -27,6 +27,7 @@ $HOME/.config/polybar/launch.sh &
 # polybar &
 
 #Script for battery
+killall verifyBattery
 $HOME/.config/verifyBattery.sh &
 
 #Wifi

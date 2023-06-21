@@ -1,52 +1,35 @@
 #!/bin/bash
-
-# Comprueba si el adaptador de corriente está conectado
-check_power_status() {
-  acpi -a | grep -q "on-line"
-  return $?
-}
-
-# Comprueba el nivel actual de la batería
-check_battery_level() {
-  acpi -b | grep -Po '[0-9]+(?=%)'
-}
-
-# Notificación utilizando dunst
-send_notification() {
-  local message=$1
-  dunstify -u normal "Gestión de batería" "$message"
-}
-
-# Suspender el sistema
-suspend_system() {
-  send_notification "¡La batería ha alcanzado el nivel crítico! El sistema se suspenderá en 10 segundos."
-  sleep 10
-  systemctl suspend
-}
-
-# Verifica el nivel de la batería y toma las acciones necesarias
-check_battery() {
-  local battery_level=$(check_battery_level)
-  
-  if [ $battery_level -le 5 ]; then
-    suspend_system
-  elif [ $battery_level -le 10 ]; then
-    send_notification "Nivel de batería bajo: $battery_level%. Conéctate al cargador."
-  elif [ $battery_level -le 20 ]; then
-    send_notification "Nivel de batería moderado: $battery_level%. Conéctate al cargador."
-  fi
-}
-
-# Verifica si el adaptador de corriente está conectado
-if check_power_status; then
-  send_notification "El cargador está conectado."
-else
-  send_notification "El cargador no está conectado."
-fi
-
-# Comprueba la batería cada 60 segundos
+  notification_sent_20="/tmp/battery_20"
+  notification_sent_10="/tmp/battery_10"
 while true; do
-  check_battery
-  sleep 60
-done
+  
+  battery_level=$(cat /sys/class/power_supply/BAT0/capacity)
+  battery_status=$(cat /sys/class/power_supply/BAT0/status)
 
+    if [[ $battery_status == "Charging" ]]; then
+      if [[ -f $notification_sent_10 ]]; then
+        rm $notification_sent_10
+      fi
+      if [[ -f $notification_sent_20 ]]; then
+        rm $notification_sent_20
+      fi
+    else
+      if [[ $battery_level -le 5 ]]; then
+        dunstify "Battery Warning" "Battery level is $battery_level%. Battery charge is very low. System will suspend to prevent data loss." -u critical
+        sleep 20
+        systemctl suspend
+        break
+      fi
+
+      if [[ $battery_level -le 10 && $battery_level -gt 5 && ! -f $notification_sent_10 ]]; then
+        dunstify "Battery Warning" "Battery level is $battery_level%. Battery charge is critical. Save your work and connect to a power source." -u normal
+        touch $notification_sent_10
+      fi 
+
+      if [[ $battery_level -le 20 && $battery_level -gt 11 && ! -f $notification_sent_20 ]]; then
+        dunstify "Battery Warning" "Battery level is $battery_level%. Connect to a power source immediately." -u low
+        touch $notification_sent_20
+      fi
+    fi
+    sleep 60  # Wait for 1 minute before checking the battery status again
+done
