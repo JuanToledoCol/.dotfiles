@@ -43,6 +43,9 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 xsetroot -cursor_name left_ptr -xcf /usr/share/icons/Bibata-Modern-Classic/cursors/left_ptr
 
+bspc rule -a Thunar state=floating
+bspc rule -a Thunar state=floating rectangle=800x600+($((($(bspc query -M --names-width) - 800) / 2)))$((($(bspc query -m --names-height) - 600) / 2))
+
 # Keyboard
 setxkbmap latam &
 
